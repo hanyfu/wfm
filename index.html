@@ -272,13 +272,11 @@ a:hover {
 }
 </style>
 
-  <script>
-  window.console = window.console || function(t) {};
-</script>
-
-  
   
 </head>
+
+
+
 
 <body translate="no">
   <main id="main" class="container">
@@ -293,12 +291,14 @@ a:hover {
                <label for="name" id="name-label">
                Technician Name *
                <input class="" type="text" id="name" name="name" placeholder="Enter your name (required)" required />
+             
                </label>
             </fieldset>
             <fieldset>
                <label for="email" id="email-label">
                Order Number/ Service Order No *
                <input class="" type="text" id="name" name="name" placeholder="Enter your name (required)" required />
+              
             </fieldset>
            
             <fieldset>
@@ -339,7 +339,7 @@ a:hover {
             <fieldset>
                 <label for="email" id="email-label">
                 ONT Serial No *
-                <input class="" type="text" id="name" name="name" placeholder="Enter your name (required)" required />
+                <input class="" type="text" id="name" name="name" placeholder="Enter your name (required)" />
                 </label>
              </fieldset>
              <fieldset>
@@ -372,25 +372,25 @@ a:hover {
              <fieldset>
                 <label for="name" id="name-label">
                 Cable length (ft) *
-                <input class="" type="text" id="name" name="name" placeholder="Enter your name (required)" required />
+                <input class="" type="text" id="name" name="name" placeholder="Enter your name (required)"  />
                 </label>
              </fieldset>
              <fieldset>
                 <label for="name" id="name-label">
                 Internal wiring length (ft) *
-                <input class="" type="text" id="name" name="name" placeholder="Enter your name (required)" required />
+                <input class="" type="text" id="name" name="name" placeholder="Enter your name (required)"  />
                 </label>
              </fieldset>
              <fieldset>
                 <label for="name" id="name-label">
                 Pulling (ft) *
-                <input class="" type="text" id="name" name="name" placeholder="Enter your name (required)" required />
+                <input class="" type="text" id="name" name="name" placeholder="Enter your name (required)" />
                 </label>
              </fieldset>
              <fieldset>
                 <label for="name" id="name-label">
                 Total Wiring (ft) *
-                <input class="" type="text" id="name" name="name" placeholder="Enter your name (required)" required />
+                <input class="" type="text" id="name" name="name" placeholder="Enter your name (required)" />
                 </label>
              </fieldset>
              <fieldset>
@@ -426,13 +426,13 @@ a:hover {
              <fieldset>
                 <label for="email" id="email-label">
                 STB MAC *
-                <input class="" type="text" id="name" name="name" placeholder="Enter your name (required)" required />
+                <input class="" type="text" id="name" name="name" placeholder="Enter your name (required)" />
                 </label>
              </fieldset>
              <fieldset>
                 <label for="email" id="email-label">
                 STB Serial *
-                <input class="" type="text" id="name" name="name" placeholder="Enter your name (required)" required />
+                <input class="" type="text" id="name" name="name" placeholder="Enter your name (required)"  />
                 </label>
              </fieldset>
              <div class="m-b-md text-center">
@@ -464,21 +464,21 @@ a:hover {
              <fieldset>
                 <label for="email" id="email-label">
                 Optical Power (db) *
-                <input class="" type="text" id="name" name="name" placeholder="Enter your name (required)" required />
+                <input class="" type="text" id="name" name="name" placeholder="Enter your name (required)"  />
                 </label>
              </fieldset>
              <fieldset>
                 <fieldset>
                     <label for="email" id="email-label">
                         Device ID *
-                    <input class="" type="text" id="name" name="name" placeholder="Enter your name (required)" required />
+                    <input class="" type="text" id="name" name="name" placeholder="Enter your name (required)"  />
                     </label>
                  </fieldset>
                  <fieldset>
                     <fieldset>
                         <label for="email" id="email-label">
                             Device port *
-                        <input class="" type="text" id="name" name="name" placeholder="Enter your name (required)" required />
+                        <input class="" type="text" id="name" name="name" placeholder="Enter your name (required)"  />
                         </label>
                      </fieldset>
                     
@@ -495,6 +495,34 @@ a:hover {
                </label>
             </fieldset>
             <button id="submit" type="submit" class="btn">Submit the form</button>
+
+        </form>
+        
+  <script>
+    window.console = window.console || function(t) {};
+  </script>
+  <script>
+      const form = document.querySelector("#form")
+      const submitButton = document.querySelector("#submit")
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbwG9vCMBREFM4suhSiTdVPFu7-F-6JclKyZGGuKjFS-dqaZT6kKXS6r_15kub3YH2R5yw/exec'
+   
+      form.addEventListener('submit', e => {
+        submitButton.disabled = true
+        e.preventDefault()
+        let requestBody = new FormData(form)
+        fetch(scriptURL, { method: 'POST', body: requestBody})
+          .then(response => {
+             alert('Success!', response)
+             submitButton.disabled = false
+            })
+          .catch(error => {
+          alert('Error!', error.message)
+            submitButton.disabled = false
+   
+          }
+          )
+      })
+   </script>
          </form>
          <div class="copyright m-t-sm">
             <div>By Mohamed Haneef <i class="glyphicon glyphicon-heart"></i></div>
